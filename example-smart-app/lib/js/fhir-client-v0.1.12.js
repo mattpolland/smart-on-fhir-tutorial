@@ -17311,7 +17311,7 @@ function providers(fhirServiceUrl, provider, callback, errback){
       catch (err) {
         return errback && errback(err);
       }
-      console.log('callback 3', res)
+      console.log('callback 3', JSON.stringify(res))
 
       callback && callback(res);
     }, function() {
@@ -17439,7 +17439,7 @@ BBClient.authorize = function(params, errback){
        redirect_to += "&launch="+encodeURIComponent(client.launch);
     }
 
-    console.log('redirect', redirect_to)
+    console.log('redirect_to', redirect_to)
 
     window.location.href = redirect_to;
   }, errback);
