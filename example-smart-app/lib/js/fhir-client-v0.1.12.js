@@ -17311,7 +17311,7 @@ function providers(fhirServiceUrl, provider, callback, errback){
       catch (err) {
         return errback && errback(err);
       }
-      console.log('callback 3')
+      console.log('callback 3', res)
 
       callback && callback(res);
     }, function() {
@@ -17357,9 +17357,11 @@ BBClient.authorize = function(params, errback){
   delete sessionStorage.tokenResponse;
 
   if (!params.client){
+  	console.log('oh')
     params = {
       client: params
     };
+    console.log('blooper', params)
   }
 
   if (!params.response_type){
@@ -17394,9 +17396,10 @@ BBClient.authorize = function(params, errback){
     params.fake_token_response.patient = urlParam("patientId");
   }
 
-  console.log('here')
+  console.log('here', params)
   providers(params.server, params.provider, function(provider){
   	console.log('provider', provider)
+  	console.log('state', params.client.state, JSON.stringify(params))
 
     params.provider = provider;
 
