@@ -17345,6 +17345,7 @@ function bypassOAuth(fhirServiceUrl, callback){
 BBClient.authorize = function(params, errback){
 
 	console.log('glorber', params, errback)
+	console.log('almost')
 
   if (!errback){
     errback = function(){
@@ -17393,6 +17394,7 @@ BBClient.authorize = function(params, errback){
     params.fake_token_response.patient = urlParam("patientId");
   }
 
+  console.log('here')
   providers(params.server, params.provider, function(provider){
   	console.log('provider', provider)
 
