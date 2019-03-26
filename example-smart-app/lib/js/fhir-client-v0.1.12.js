@@ -17395,7 +17395,7 @@ BBClient.authorize = function(params, errback){
   }
 
   providers(params.server, params.provider, function(provider){
-  	console.log('provider', provider)
+  	// console.log('provider', provider)
 
     params.provider = provider;
 
