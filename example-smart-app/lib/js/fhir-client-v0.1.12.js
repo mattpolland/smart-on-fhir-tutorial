@@ -17255,10 +17255,12 @@ BBClient.ready = function(input, callback, errback){
 };
 
 function providers(fhirServiceUrl, provider, callback, errback){
+	console.log('providers call', fhirServiceUrl, provider)
 
   // Shim for pre-OAuth2 launch parameters
   if (isBypassOAuth()){
     process.nextTick(function(){
+    	console.log('callback 1')
       bypassOAuth(fhirServiceUrl, callback);
     });
     return;
@@ -17270,6 +17272,8 @@ function providers(fhirServiceUrl, provider, callback, errback){
     process.nextTick(function(){
       callback && callback(provider);
     });
+    	console.log('callback 2')
+
     return;
   }
 
@@ -17307,6 +17311,7 @@ function providers(fhirServiceUrl, provider, callback, errback){
       catch (err) {
         return errback && errback(err);
       }
+      console.log('callback 3')
 
       callback && callback(res);
     }, function() {
@@ -17340,6 +17345,7 @@ function bypassOAuth(fhirServiceUrl, callback){
 BBClient.authorize = function(params, errback){
 
 	console.log('glorber', params, errback)
+	return;
 
   if (!errback){
     errback = function(){
@@ -17389,6 +17395,7 @@ BBClient.authorize = function(params, errback){
   }
 
   providers(params.server, params.provider, function(provider){
+  	console.log('provider', provider)
 
     params.provider = provider;
 
@@ -17405,6 +17412,8 @@ BBClient.authorize = function(params, errback){
         var combinedObject = $.extend(true, params, { 'tokenResponse' : {state: state} });
         sessionStorage[state] = JSON.stringify(combinedObject);
       }
+
+      console.log('early redirect', client.redirect_uri + "?state="+encodeURIComponent(state))
 
       window.location.href = client.redirect_uri + "?state="+encodeURIComponent(state);
       return;
@@ -17425,6 +17434,8 @@ BBClient.authorize = function(params, errback){
     if (typeof client.launch !== 'undefined' && client.launch) {
        redirect_to += "&launch="+encodeURIComponent(client.launch);
     }
+
+    console.log('redirect', redirect_to)
 
     window.location.href = redirect_to;
   }, errback);
