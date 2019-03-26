@@ -17345,7 +17345,6 @@ function bypassOAuth(fhirServiceUrl, callback){
 BBClient.authorize = function(params, errback){
 
 	console.log('glorber', params, errback)
-	return;
 
   if (!errback){
     errback = function(){
@@ -17395,7 +17394,7 @@ BBClient.authorize = function(params, errback){
   }
 
   providers(params.server, params.provider, function(provider){
-  	// console.log('provider', provider)
+  	console.log('provider', provider)
 
     params.provider = provider;
 
