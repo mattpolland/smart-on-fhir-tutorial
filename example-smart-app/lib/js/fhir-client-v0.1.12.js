@@ -17439,6 +17439,7 @@ BBClient.authorize = function(params, errback){
        redirect_to += "&launch="+encodeURIComponent(client.launch);
     }
 
+    console.log('client', JSON.stringify(client))
     console.log('redirect_to', redirect_to)
 
     window.location.href = redirect_to;
